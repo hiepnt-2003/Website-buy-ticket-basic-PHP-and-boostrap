@@ -1,0 +1,24 @@
+Client:
+    - index.php (home)
+    - category.php
+    - detail.php
+    - cart.php
+    - checkout.php
+    - complete.php ( hoàn thành thanh toán)
+    - contact.php
+
+Admin:
+    - authen/***
+    - user/***
+    - category/***
+    - products/***
+    - order/***
+    - feedback/***
+
+Database:
+    - config.php ( Cấu hình của CSDL )
+    - dbhelper.php (Chứa các function dùng chung cho cả project )
+
+
+Utils:
+    - utility.php ( Chứa các hàm tiện ích cho cả dự án )

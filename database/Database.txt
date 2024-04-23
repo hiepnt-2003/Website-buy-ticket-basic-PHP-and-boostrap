@@ -1,0 +1,58 @@
+1. Bảng Role:
+    id          : int                   -> Khóa chính tự tăng
+    name        : string (varchar)      -> 20 ký tự
+
+2. Bảng User
+    id          : int                   -> Khóa chính
+    role_id     : int                   -> foreign key -> role(id)
+    fullname    : string                -> 50 ký tự
+    account     : string                -> 150 ký tự
+    password    : string  (mã hóa md5)  -> 32 ký tự
+    deleted     : int                   -> 0 : đã xóa
+                                        -> 1 : chưa xóa    
+
+3. Bảng danh mục : Category
+    id          : int                   -> Khóa tự tăng
+    name        : string                -> 100 ký tự
+
+4. Bảng vé : Products
+    id          : int                   -> Khóa tự tăng
+    category_id : int                   -> foreign key -> category(id)
+    title       : string                -> 350 ký tự
+    price       : int                   
+    thumbnail   : string                -> 500 ký tự (hình ảnh)
+    description : longtext              -> mô tả
+    even_date   : datetime              -> ngày diễn ra sự kiện
+    deleted     : int                   -> 0 : đã xóa
+                                        -> 1 : chưa xóa    
+
+
+5. Bảng quản lý phản hồi -> Feedback
+    id          : int                   -> Khóa tự tăng
+    first_name  : string                -> 30 ký tự
+    last_name   : string                -> 30 ký tự
+    email       : string                -> 150 ký tự
+    phone_number: string                -> 20 ký tự
+    subject_name: string                -> 200 ký tự
+    note        : string                -> 500 ký tự
+
+6.1. Bảng đơn hàng (Order)
+    id          : int                   -> Khóa tự tăng
+    user_id     : int                   -> foreign key -> User(id)
+    fullname    : string                -> 50 ký tự
+    email       : string                -> 150 ký tự
+    phone_number: string                -> 20 ký tự
+    address     : string                -> 200 ký tự
+    note        : string                -> 200 ký tự
+    order_date  : datetime              -> ngày đặt hàng
+    status      : int                   -> 0:pending : chưa giải quyết
+                                           1:approved: đã duyệt
+    total_money : int                   -> tổng tiền của đơn hàng
+
+6.2. Bảng chi tiết đơn hàng
+    id          : int                   -> Khóa tự tăng
+    order_id    : int                   -> foreign key -> Order(id)
+    product_id  : int                   -> foreign key -> Products(id)
+    price       : int                   -> giá của sản phẩm
+    number      : int                   -> số lượng sản phẩm mua
+    total_money = price*number          -> tổng tiền của sản phẩm

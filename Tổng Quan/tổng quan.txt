@@ -1,0 +1,24 @@
+Front-end:
+	1. Trang chủ
+	2. Trang danh sách show
+	3. Trang chi tiết show
+	4. Trang giỏ hàng
+	5. Trang checkout
+	6. Trang thanh toán hoàn thành
+	    Quý khách đã đặt vé thành công. 
+        Chúng tôi sẽ gửi vé cho quý khách khi
+        giao dịch chuyển khoản hoàn thành
+	7. Trang liên hệ
+
+Admin:
+    1. Tài khoản người dùng:
+        - Quản lý role (admin và user)
+        - Quản lý người dùng: admin/user
+            Hiển thị danh sách/thêm/sửa/xóa
+        - Register/login
+    2. Quản lý danh mục sản phẩm
+    3. Quản lý sản phẩm
+    4. Quản lý đơn hàng
+        Hiển thị danh sách đơn hàng -> Hiển thị theo thời gian
+    5. Quản lý phản hồi
+

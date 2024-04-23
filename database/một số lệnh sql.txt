@@ -1,0 +1,28 @@
+1. SELECT :
+    - SELECT * FROM [TABLE];
+
+    --->Chọn tất cả các tên khác nhau từ bảng [TABLE]
+    SELECT DISTINCT name 
+    FROM [TABLE];
+
+2. Where 
+    SELECT * FROM Customers
+    WHERE Country='Mexico';
+
+3. Order by
+    ---> Sắp xếp tăng dần
+    SELECT * FROM Products
+    ORDER BY Price;
+
+    ---> Sắp xếp giảm dần
+    SELECT * FROM Products
+    ORDER BY Price DESC;
+
+4. And(&&) - Or(|) - Not(!=)
+    SELECT * FROM Customers
+    WHERE Country = 'Spain' 
+    AND (CustomerName LIKE 'G%' 
+        OR CustomerName LIKE 'R%');
+    NOT Country = 'Ho Chi Minh'
+
+5. 
