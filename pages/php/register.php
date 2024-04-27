@@ -6,14 +6,15 @@
     <title>Đăng ký</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="../base.css">
-    <link rel="stylesheet" href="./register.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/register.css">
 </head>
 <body>
 
     <?php
-        require_once('../config.php');
+        require_once('../php/config.php');
         $errorName = '';
+        $is_connected = false;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -40,7 +41,7 @@
                                     VALUE (2, '$fullname', '$account', '$password',0);";
                     mysqli_query($connection, $sql_insert);
                     mysqli_close($connection);
-
+                    $is_connected = true;
                     header('Location: http://localhost/TicketShop');
                     // echo "đăng ký thành công";
                     exit();
@@ -80,7 +81,7 @@
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary">Đăng ký</button>
                         <h4 class="error" ><?php echo $errorName;?></h4>
-                        <a href="http://localhost/TicketShop/pages/login/login.php">Đã có tài khoản? Đăng nhập ngay</a>
+                        <a href="./login.php">Đã có tài khoản? Đăng nhập ngay</a>
                     </div>
             </form>
         </div>

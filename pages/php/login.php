@@ -6,13 +6,14 @@
     <title>Đăng Nhập</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="../base.css">
-    <link rel="stylesheet" href="./login.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
     <?php
-        require_once('../config.php');
+        require_once('../php/config.php');
         $errorName = '';
+        $is_connected = false;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Lấy dữ liệu từ form
@@ -32,6 +33,7 @@
                 // So sánh mật khẩu đã hash từ cơ sở dữ liệu với mật khẩu người dùng nhập vào
                 if (md5($password) === $hashed_password) {
                     mysqli_close($connection);
+                    $is_connected = true;
                     header('Location: http://localhost/TicketShop');
                     exit();
                 } else {
@@ -61,7 +63,7 @@
             <div class="text-center">
                 <button type="submit" class="btn btn-primary">Đăng nhập</button>
                 <h4 class="error py-2"><?php echo $errorName ?></h4>
-                <a href="http://localhost/TicketShop/pages/register/register.php">Chưa có tài khoản? Đăng ký ngay</a>
+                <a href="./register.php">Chưa có tài khoản? Đăng ký ngay</a>
             </div>
         </form>
     </div>

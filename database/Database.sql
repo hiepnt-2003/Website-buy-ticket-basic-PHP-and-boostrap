@@ -24,6 +24,7 @@ CREATE TABLE `Products` (
   `price` int,
   `thumbnail` varchar(500),
   `description` longtext,
+  `locations` varchar(500),
   `even_date` datetime,
   `deleted` int
 );
@@ -38,7 +39,7 @@ CREATE TABLE `Feedback` (
   `note` varchar(500)
 );
 
-CREATE TABLE `Order` (
+CREATE TABLE `Orders` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `user_id` int,
   `fullname` varchar(150),
@@ -64,8 +65,8 @@ ALTER TABLE `User` ADD FOREIGN KEY (`role_id`) REFERENCES `Role` (`id`);
 
 ALTER TABLE `Products` ADD FOREIGN KEY (`category_id`) REFERENCES `Category` (`id`);
 
-ALTER TABLE `Order` ADD FOREIGN KEY (`user_id`) REFERENCES `User` (`id`);
+ALTER TABLE `Orders` ADD FOREIGN KEY (`user_id`) REFERENCES `User` (`id`);
 
 ALTER TABLE `Detail_Order` ADD FOREIGN KEY (`product_id`) REFERENCES `Products` (`id`);
 
-ALTER TABLE `Detail_Order` ADD FOREIGN KEY (`order_id`) REFERENCES `Order` (`id`);
+ALTER TABLE `Detail_Order` ADD FOREIGN KEY (`order_id`) REFERENCES `Orders` (`id`);
