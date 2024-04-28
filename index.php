@@ -31,49 +31,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="./pages/css/base.css">
-  <style>
-    .wrapper {
-      width: 100%;
-    }
-
-    .navbar {
-      background-color: #87CEEB;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 75px;
-      z-index: 1000;
-      /* Đảm bảo rằng header hiển thị trên các phần tử khác */
-    }
-
-    .text-nav {
-      color: black;
-    }
-
-    .search_form {
-      height: 40px;
-    }
-
-    .main {
-      margin-top: 100px;
-      width: 100%;
-      height: 1000px;
-    }
-
-    .carousel .carousel-item img {
-      height: 400px;
-      object-fit: cover;
-      /* Đảm bảo ảnh không bị méo khi thay đổi kích thước */
-      border-radius: 10px;
-      margin: auto !important;
-      display: block !important;
-    }
-  </style>
+  <link rel="stylesheet" href="./pages/css/basic.css">
+  
+  <link rel="stylesheet" href="./pages/css/index.css">
 </head>
 
 <body>
+
   <div class="wrapper">
     <!-- navbar-expand-lg: Class này kiểm soát thời điểm mà thanh điều hướng
       sẽ chuyển từ chế độ ngang (horizontal) sang chế độ xổ xuống (collapsed). 
@@ -158,7 +122,7 @@
           <?php for ($i = 0; $i < 9; $i++) : ?>
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
-                <img src="<?php echo $products[$i]['thumbnail']; ?>" class="card-img-top" alt="Your Image">
+                <img src="<?php echo $products[$i]['thumbnail']; ?>" class="card-img-top">
                 <div class="card-body">
                   <h5 class="card-title"><?php echo $products[$i]['title']; ?></h5>
                   <p class="card-text">Time: <?php echo $products[$i]['even_date']; ?></p>
@@ -171,10 +135,32 @@
       </div>
     </div>
 
-    <footer class="container">
-      <p class="float-end"><a href="#">Back to top</a></p>
-      <p>&copy; 2021-2022 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    <footer>
+      <div class="container py-5">
+        <div class="row">
+          <div class="col">
+            <h5>Giới thiệu</h5>
+            <p>TicketShop là website đặt vé uy tín được nhiều ca nghệ sĩ nổi tiếng trong nước và quốc tế 
+              tin tưởng hợp tác phát hành vé tham gia liveshow của mình.</p>
+          </div>
+          <div class="col">
+            <h5>Liên hệ</h5>
+            <p>Facebook: <a href="#">Nguyễn Tiến Hiệp</a></p>
+            <p>Zalo: <a href="#">Nguyễn Tiến Hiệp</a></p>
+            <p>Hotline: 0338948581</p>
+          </div>
+          <div class="col">
+            <h5>Chính sách</h5>
+            <p><a href="#">Chính sách thanh toán</a></p>
+            <p><a href="#">Chính sách bảo mật</a></p>
+            <p><a href="#">Chính sách chăm sóc khách hàng</a></p>
+          </div>
+        </div>
+      </div>
+
     </footer>
+  </div>
+
 </body>
 
 </html>
