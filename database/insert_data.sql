@@ -71,7 +71,7 @@ INSERT INTO products (category_id,	title,	price,	thumbnail,	description,location
      './img/mvp band.png',
      'Một mùa hè rực rỡ của năm 2024 với những chuỗi kì nghỉ hè cho bạn bè, người thân và gia đình đã đang trên con đường đến với chúng ta. Hòa mình cùng với nhịp độ sôi nổi ấy, Harmony Show xin gửi tới những làn sóng giai điệu vui tươi qua sự góp mặt của band nhạc MTV và ca sĩ Phan Đình Tùng với những bản hit vượt thời gian.',
      'Harmony Hill – khu đồi thông tại đảo Tuần Châu, Hạ Long.',
-     '2024-04-30',
+     '2026-04-30',
      1),
      
 	(2,
@@ -99,16 +99,13 @@ INSERT INTO products (category_id,	title,	price,	thumbnail,	description,location
      'Tháng lễ hội sẽ tràn đầy bất ngờ khi đến với The Global City. Chuỗi Lễ Hội Nhạc Nước The Fountain Festival sẽ diễn ra liên tục với 3 chủ đề không thể “cháy” hơn: 
 	18.04: Đêm nhạc GREATEST HITS 
 	Phiêu cùng những bản Top Hits “đã tai” nhất của NOO PHƯỚC THỊNH, ANH TÚ, ORANGE, AMEE & DJ 2PILLZ 
-
 	30.04: Đêm nhạc FREE FLOW
 	Bùng nổ cảm xúc trong âm nhạc cực chất của SUBOI, GDUCKY, PHÁO, WEAN & HURRYKNG 
-
 	01.05: Đêm nhạc ROCK THE GLOBAL
 	Cuồng nhiệt cùng “bão rock” rực lửa từ BỨC TƯỜNG & PHẠM ANH KHOA, MICROWAVE, CHILLIES, 7UPPERCUTS & THE FLOB
-
 	Và tất nhiên không thể thiếu những hoạt động lễ hội rực sắc trong không gian thoáng đãng tại The Global City, vui chơi giải trí tại City Park, màn trình diễn nhạc nước lớn nhất Đông Nam Á,...',
      'THE GLOBAL CITY, Đỗ Xuân Hợp, P.An Phú, Quận 2, TP. Thủ Đức, TP.HCM',
-     '2024-08-18',
+     '2026-08-18',
      0),
      
 	(1,
@@ -116,10 +113,9 @@ INSERT INTO products (category_id,	title,	price,	thumbnail,	description,location
      2500000,
      './img/beakhyun.png',
      'Baekhyun lần đầu tiên ra mắt khán giả vào năm 2012. Anh là một trong ba giọng ca chính của EXO, là một mẩu của nhóm nhỏ EXO-CBX và đảm nhận vai trò trưởng nhóm của nhóm nhạc dự án SuperM. Chủ nhân hit Candy còn tham gia sáng tác, viết lời cho một số ca khúc của nhóm. Bên cạnh ngoại hình nổi bật, Baekhyun còn được biết đến với giọng hát đầy truyền cảm và nội lực.
-
-Mỹ nam sinh năm 1992 từng lập nhiều kỷ lục khi hoạt động solo. Ngôi sao Kpop 32 tuổi nổi tiếng cùng loạt hit Beautiful, Dream, Candy, UN Village, Bambi… Baekhyun cũng thường xuyên hát cho các phim Bầu trời rực đỏ, Ký sự thanh xuân, Người thầy y đức 2…',
+     Mỹ nam sinh năm 1992 từng lập nhiều kỷ lục khi hoạt động solo. Ngôi sao Kpop 32 tuổi nổi tiếng cùng loạt hit Beautiful, Dream, Candy, UN Village, Bambi… Baekhyun cũng thường xuyên hát cho các phim Bầu trời rực đỏ, Ký sự thanh xuân, Người thầy y đức 2…',
      '4 Đ. Lê Đại Hành, Phường 15, Quận 11, Thành Phố Hồ Chí Minh',
-     '2024-09-26',
+     '2026-09-26',
      0);
 
 INSERT INTO feedback (first_name,	last_name,	email,	phone_number,	subject_name,	note) VALUES

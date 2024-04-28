@@ -1,3 +1,26 @@
+<?php
+  require_once('./pages/php/config.php');
+  $connection = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
+  $sql = 'SELECT thumbnail, title, even_date, price FROM products ORDER BY products.even_date DESC;';
+  $result = mysqli_query($connection, $sql);
+  $products = array();
+  if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+      // Lưu thông tin sản phẩm vào mảng
+      $products[] = array(
+        'thumbnail' => $row['thumbnail'],
+        'title' => $row['title'],
+        'even_date' => $row['even_date'],
+        'price' => $row['price']
+      );
+      // Nếu đã lấy đủ 9 sản phẩm thì dừng vòng lặp
+      if (count($products) == 9) {
+        break;
+      }
+    }
+  }
+  mysqli_close($connection);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +38,7 @@
     }
 
     .navbar {
-      background-color: rgba(13, 110, 253, .25);
+      background-color: #87CEEB;
       position: fixed;
       top: 0;
       left: 0;
@@ -40,8 +63,12 @@
     }
 
     .carousel .carousel-item img {
-      height: 300px;
-      object-fit: cover; /* Đảm bảo ảnh không bị méo khi thay đổi kích thước */
+      height: 400px;
+      object-fit: cover;
+      /* Đảm bảo ảnh không bị méo khi thay đổi kích thước */
+      border-radius: 10px;
+      margin: auto !important;
+      display: block !important;
     }
   </style>
 </head>
@@ -63,7 +90,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link active text-nav" aria-current="page" href="http://localhost/TicketShop/">Trang Chủ</a>
+              <a class="nav-link active text-nav" aria-current="page" href="http://localhost/TicketShop/">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-nav" href="#">Solo Show</a>
@@ -100,13 +127,13 @@
           <!-- Slides -->
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="https://thuthuatphanmem.vn/uploads/2015/01/05/slide-show_044314.jpg" class="d-block w-100" alt="Image 1">
+              <img src="<?php echo $products[0]['thumbnail']; ?>" class="d-block w-70" alt="Image 1">
             </div>
             <div class="carousel-item">
-              <img src="image2.jpg" class="d-block w-100" alt="Image 2">
+              <img src="<?php echo $products[1]['thumbnail']; ?>" class="d-block w-70" alt="Image 2">
             </div>
             <div class="carousel-item">
-              <img src="image3.jpg" class="d-block w-100" alt="Image 3">
+              <img src="<?php echo $products[2]['thumbnail']; ?>" class="d-block w-70" alt="Image 3">
             </div>
           </div>
 
@@ -131,11 +158,11 @@
           <?php for ($i = 0; $i < 9; $i++) : ?>
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
-                <img src="your_image.jpg" class="card-img-top" alt="Your Image">
+                <img src="<?php echo $products[$i]['thumbnail']; ?>" class="card-img-top" alt="Your Image">
                 <div class="card-body">
-                  <h5 class="card-title">Tiêu đề</h5>
-                  <p class="card-text">Thời gian: 12:00 PM</p>
-                  <p class="card-text">Giá: $100</p>
+                  <h5 class="card-title"><?php echo $products[$i]['title']; ?></h5>
+                  <p class="card-text">Time: <?php echo $products[$i]['even_date']; ?></p>
+                  <p class="card-text">Price: <?php echo $products[$i]['price']; ?>VND</p>
                 </div>
               </div>
             </div>
@@ -144,7 +171,10 @@
       </div>
     </div>
 
-    <footer class="container"></footer>
+    <footer class="container">
+      <p class="float-end"><a href="#">Back to top</a></p>
+      <p>&copy; 2021-2022 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
 </body>
 
 </html>
