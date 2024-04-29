@@ -1,25 +1,33 @@
 <?php
-  require_once('./pages/php/config.php');
-  $connection = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
-  $sql = 'SELECT thumbnail, title, even_date, price FROM products ORDER BY products.even_date DESC;';
-  $result = mysqli_query($connection, $sql);
-  $products = array();
-  if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-      // Lưu thông tin sản phẩm vào mảng
-      $products[] = array(
-        'thumbnail' => $row['thumbnail'],
-        'title' => $row['title'],
-        'even_date' => $row['even_date'],
-        'price' => $row['price']
-      );
-      // Nếu đã lấy đủ 9 sản phẩm thì dừng vòng lặp
-      if (count($products) == 9) {
-        break;
-      }
+session_start();
+require_once('./pages/php/config.php');
+
+// xử lý đăng nhập/đăng xuất
+if (isset($_SESSION['fullname']) && $_SESSION['fullname'] != '') {
+  $fullname = $_SESSION['fullname'];
+}
+
+$connection = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
+$sql = 'SELECT thumbnail, title, even_date, price FROM products ORDER BY products.even_date DESC;';
+$result = mysqli_query($connection, $sql);
+mysqli_close($connection);
+
+$products = array();
+if (mysqli_num_rows($result) > 0) {
+  while ($row = mysqli_fetch_assoc($result)) {
+    // Lưu thông tin sản phẩm vào mảng
+    $products[] = array(
+      'thumbnail' => $row['thumbnail'],
+      'title' => $row['title'],
+      'even_date' => $row['even_date'],
+      'price' => $row['price']
+    );
+    // Nếu đã lấy đủ 9 sản phẩm thì dừng vòng lặp
+    if (count($products) == 9) {
+      break;
     }
   }
-  mysqli_close($connection);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +40,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="./pages/css/basic.css">
-  
+
   <link rel="stylesheet" href="./pages/css/index.css">
 </head>
 
@@ -66,20 +74,36 @@
               <a class="nav-link text-nav" href="#">Music Festival</a>
             </li>
           </ul>
+
           <form class="d-flex search_form">
             <input class="form-control me-2" type="search" placeholder="Search events ..." aria-label="Search">
             <button class="btn btn-outline-success" type="submit">
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           </form>
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link text-nav " href="./pages/php/register.php">Register</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-nav" href="./pages/php/login.php">Login</a>
-            </li>
-          </ul>
+
+          <?php if (isset($fullname)) : ?>
+            <div class="dropdown px-2">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <?php echo $fullname; ?>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="./pages/account.php">Account</a></li>
+                <li><a class="dropdown-item" href="./pages/php/logout.php">Logout</a></li>
+              </ul>
+            </div>
+
+          <?php else : ?>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link text-nav " href="./pages/php/register.php">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-nav" href="./pages/php/login.php">Login</a>
+              </li>
+            </ul>
+          <?php endif; ?>
+
         </div>
       </div>
     </nav>
@@ -140,8 +164,13 @@
         <div class="row">
           <div class="col">
             <h5>Giới thiệu</h5>
-            <p>TicketShop là website đặt vé uy tín được nhiều ca nghệ sĩ nổi tiếng trong nước và quốc tế 
-              tin tưởng hợp tác phát hành vé tham gia liveshow của mình.</p>
+            <p>TicketShop là website đặt vé uy tín<br>
+              được nhiều ca nghệ sĩ nổi tiếng<br>
+              trong nước và quốc tế tin tưởng hợp tác<br>
+              phát hành vé tham gia liveshow của mình.<br>
+              <strong>Địa chỉ:</strong> Q.Thanh Xuân,TP.Hà Nội<br>
+              <strong>Đăng ký hoạt động:</strong> T8/2024
+            </p>
           </div>
           <div class="col">
             <h5>Liên hệ</h5>

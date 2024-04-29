@@ -6,15 +6,15 @@
     <title>Đăng ký</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/basic.css">
     <link rel="stylesheet" href="../css/register.css">
 </head>
 <body>
 
     <?php
+        session_start();
         require_once('../php/config.php');
         $errorName = '';
-        $is_connected = false;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -28,26 +28,22 @@
             } else {
 
                 $connection = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
-
                 $sql = "SELECT * FROM user WHERE account = '$account'";
                 $result = mysqli_query($connection, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
                     $errorName = 'Tên đăng nhập đã tồn tại' ;
                 } else {
-                    
-                    $password = md5($return_password);
+                    $password = md5($password);
                     $sql_insert = "INSERT INTO user (role_id, fullname, account, password,deleted) 
                                     VALUE (2, '$fullname', '$account', '$password',0);";
                     mysqli_query($connection, $sql_insert);
                     mysqli_close($connection);
-                    $is_connected = true;
+
+                    $_SESSION['fullname'] = $fullname;
                     header('Location: http://localhost/TicketShop');
-                    // echo "đăng ký thành công";
                     exit();
                 }
-
-                mysqli_close($connection);
             }
         }
     ?>
