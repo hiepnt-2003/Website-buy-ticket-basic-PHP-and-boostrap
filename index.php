@@ -8,6 +8,7 @@ require_once('./pages/process/process_index.php');
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trang chủ</title>
+  <link rel="icon" href="./img/logo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -24,7 +25,7 @@ require_once('./pages/process/process_index.php');
     }
   </script>
 
-<script>
+  <script>
     function SentValueToSearchPage(value_click) {
       document.getElementById('search_content').value = value_click;
       document.getElementById('Form_sent_page_search').submit();
@@ -59,22 +60,22 @@ require_once('./pages/process/process_index.php');
             <a class="nav-link active text-nav" aria-current="page" href="http://localhost/TicketShop/">Trang chủ</a>
           </li>
           <li class="nav-item">
-            <div class="nav-link text-nav" type="submit" onclick="SentValueToSearchPage('Solo Show')">Solo Show</div>
+            <div class="nav-link text-nav" type="submit" id="search_content" onclick="SentValueToSearchPage('Solo Show')">Solo Show</div>
           </li>
           <li class="nav-item">
-            <div class="nav-link text-nav" type="submit" onclick="SentValueToSearchPage('Band Show')">Band Show</div>
+            <div class="nav-link text-nav" type="submit" id="search_content" onclick="SentValueToSearchPage('Band Show')">Band Show</div>
           </li>
           <li class="nav-item">
-            <div class="nav-link text-nav" type="submit" onclick="SentValueToSearchPage('Music Festival')">Music Festival</div>
+            <div class="nav-link text-nav" type="submit" id="search_content" onclick="SentValueToSearchPage('Music Festival')">Music Festival</div>
           </li>
         </ul>
 
         <form class="d-flex search_form" action="./pages/search.php" method="post">
-            <input class="form-control me-1" type="search" name="search_content" placeholder="Tìm kiếm liveshow ...">
-            <button class="btn btn-outline-success" type="submit" name="SearchProducts">
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-        </form>
+          <input class="form-control me-1" type="search" name="search_content" placeholder="Tìm kiếm liveshow ..." required>
+          <button class="btn btn-outline-success" type="submit" name="SearchProducts">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form> 
 
         <?php if (isset($fullname)) : ?>
           <div class="dropdown px-2">
@@ -107,7 +108,7 @@ require_once('./pages/process/process_index.php');
     <div class="photo_dynamic pt-4">
       <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
         <!-- Slides -->
-        <div class="carousel-inner" type="submit">
+        <div class="carousel-inner" type="submit" style="width: 100%;">
           <div class="carousel-item active" onclick="SentValueToProductPage('<?php echo $products[0]['id']; ?>')">
             <img src="<?php echo $products[0]['thumbnail']; ?>" class="d-block w-70" alt="Image 1">
           </div>

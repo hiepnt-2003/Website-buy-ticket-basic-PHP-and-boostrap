@@ -8,7 +8,8 @@ require_once('./process/process_product.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $product['title']; ?></title>
+    <title><?php echo $product['title'] ?></title>
+    <link rel="icon" href="../img/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -16,9 +17,19 @@ require_once('./process/process_product.php');
 </head>
 
 <body>
+    <script>
+        function SentValueToSearchPage(value_click) {
+            document.getElementById('search_content').value = value_click;
+            document.getElementById('Form_sent_page_search').submit();
+        }
+    </script>
+
+    <form id="Form_sent_page_search" action="./search.php" method="post">
+        <input type="hidden" id="search_content" name="search_content">
+    </form>
 
     <header class="navbar navbar-expand-lg">
-        <div class="container">
+        <div class="container d-flex justify-content-center align-items-center">
             <a class="navbar-brand" href="http://localhost/TicketShop/">
                 <img src="../img/logo.png" alt="Logo" height="50px">
             </a>
@@ -31,18 +42,18 @@ require_once('./process/process_product.php');
                         <a class="nav-link active text-nav" aria-current="page" href="http://localhost/TicketShop/">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-nav" href="#">Solo Show</a>
+                        <div class="nav-link text-nav" type="submit" onclick="SentValueToSearchPage('Solo Show')">Solo Show</div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-nav" href="#">Band Show</a>
+                        <div class="nav-link text-nav" type="submit" onclick="SentValueToSearchPage('Band Show')">Band Show</div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-nav" href="#">Music Festival</a>
+                        <div class="nav-link text-nav" type="submit" onclick="SentValueToSearchPage('Music Festival')">Music Festival</div>
                     </li>
                 </ul>
 
                 <form class="d-flex search_form" action="./search.php" method="post">
-                    <input class="form-control me-1" type="search" placeholder="Tìm kiếm liveshow ...">
+                    <input class="form-control me-1" type="search" name="search_content" placeholder="Tìm kiếm liveshow ..." required>
                     <button class="btn btn-outline-success" type="submit" name="SearchProducts">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
@@ -54,18 +65,18 @@ require_once('./process/process_product.php');
                             <?php echo $fullname; ?>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="./account.php">Tài khoản</a></li>
-                            <li><a class="dropdown-item" href="./logout.php">Đăng xuất</a></li>
+                            <li><a class="dropdown-item" href="./pages/account.php">Tài khoản</a></li>
+                            <li><a class="dropdown-item" href="./pages/logout.php">Đăng xuất</a></li>
                         </ul>
                     </div>
 
                 <?php else : ?>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-nav " href="./register.php">Đăng ký</a>
+                            <a class="nav-link text-nav " href="./pages/register.php">Đăng ký</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-nav" href="./login.php">Đăng nhập</a>
+                            <a class="nav-link text-nav" href="./pages/login.php">Đăng nhập</a>
                         </li>
                     </ul>
                 <?php endif; ?>
@@ -95,11 +106,10 @@ require_once('./process/process_product.php');
                 </h5>
                 <p class="text-center">......................</p>
                 <h5 class="text-left">Giá chỉ từ: <?php echo $product['price']; ?> VND</h5>
+
                 <form action="payment.php" method="post">
                     <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
-                    <div class="d-flex justify-content-center">
-                        <button class="btn btn-success" type="submit" name="buy_now" style="width: 100%;">Đặt vé ngay</button>
-                    </div>
+                    <button class="btn btn-success ms-2" type="submit" name="buy_now" style="width: 100%;">Đặt vé ngay</button>
                 </form>
             </div>
         </div>
