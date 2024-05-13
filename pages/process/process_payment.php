@@ -19,7 +19,7 @@ if (isset($_POST['buy_now']) ){
 }
 
 $connection = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
-$sql = "SELECT thumbnail, title, even_date, price, locations, description FROM products WHERE id = '$product_id';";
+$sql = "SELECT * FROM products WHERE id = '$product_id';";
 $result = mysqli_query($connection, $sql);
 mysqli_close($connection);
 if (mysqli_num_rows($result) > 0) {

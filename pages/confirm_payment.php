@@ -58,29 +58,15 @@ require_once('./process/process_confirm_payment.php');
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>
-
-                <?php if (isset($fullname)) : ?>
-                    <div class="dropdown px-2">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php echo $fullname; ?>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="./pages/account.php">Tài khoản</a></li>
-                            <li><a class="dropdown-item" href="./pages/logout.php">Đăng xuất</a></li>
-                        </ul>
-                    </div>
-
-                <?php else : ?>
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link text-nav " href="./pages/register.php">Đăng ký</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-nav" href="./pages/login.php">Đăng nhập</a>
-                        </li>
+                <div class="dropdown px-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <?php echo $fullname; ?>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="./account.php">Tài khoản</a></li>
+                        <li><a class="dropdown-item" href="./logout.php">Đăng xuất</a></li>
                     </ul>
-                <?php endif; ?>
-
+                </div>
             </div>
         </div>
     </header>
@@ -100,8 +86,8 @@ require_once('./process/process_confirm_payment.php');
                     <h6 class="pb-3" style="margin-left: 150px;">Tổng tiền: <?php echo $total_money  ?> VND</h6>
                     <form action="" method="post">
                         <div class="d-flex justify-content-center">
-                            <button class="btn btn-success" type="submit" name="btnPayment" style="width: 40%;">
-                                Xác nhận thanh toán
+                            <button type="button" class="btn btn-success w-50" data-bs-toggle="modal" data-bs-target="#confirmModal">
+                            Xác nhận thanh toán
                             </button>
                         </div>
 
@@ -160,7 +146,7 @@ require_once('./process/process_confirm_payment.php');
     </footer>
 
 
-    <!-- <div class="modal" id="confirmModal">
+    <div class="modal" id="confirmModal">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
 
@@ -172,22 +158,15 @@ require_once('./process/process_confirm_payment.php');
                     <div class="modal-body">
                         <h2 class="text-center">Thông tin thanh toán</h2>
                         <div class="d-flex justify-content-center align-items-center">
-                            <img src="../img/qr_code.jpg" alt="Ảnh QR" height="150px">
+                            <img src="../img/QR_momo.jpg" alt="Ảnh QR" height="350px">
                         </div>
-                        <h6 class="text-center">Ngân hàng: MBBank</h6>
-                        <h6 class="text-center">Số tài khoản: 883883678</h6>
-                        <h6 class="text-center">Chủ stk: Nguyễn Tiến Hiệp</h6>
-                        <h6 class="text-center">Nội dung: "Tên tài khoản" + id:<?php echo $_SESSION['product_id']; ?></h6>
-                        <div style="display: flex;">
-                            <span style="margin: 5px 0px 0px 100px;">Tổng tiền:</span>
-                            <span>
-                                <input type="text" class="form-control text-center border-0 shadow-none" id="total_money" value="<?php echo $product['price']; ?>" style="width: 120px;" readonly>
-                            </span>
-                            <span style="margin-top: 5px;">VND</span>
-                        </div>
-                        <p class="text-center" style="color: blue;">Khi nhấn xác nhận đồng nghĩa với việc bạn đồng ý<br>
-                                                về chính sách thanh toán của chúng tôi<br>
-                                                .Nếu có bất kỳ vấn đề gì xin liên hệ hotline: 0338948581
+                        <h6 class="text-center">Nội dung: "Tên tài khoản" + id: <?php echo $product['id']; ?></h6>
+                        <h6 class="text-center">Tổng tiền: <?php echo $total_money; ?> VNĐ</h6>
+                        <p class="text-center" style="color: blue;">
+                                Khi bạn chuyển tiền xong vui long nhấn xác nhận để chúng tôi nhận được thông tin. <br>    
+                                Nếu trong vòng 24h mà bạn chưa nhận được thông tin từ chúng tôi qua email
+                                hoặc có bất kỳ vấn đề gì xin liên hệ<br>
+                                Hotline: 0338948581
                         </p>
                     </div>
 
@@ -199,7 +178,7 @@ require_once('./process/process_confirm_payment.php');
                     </form>
                 </div>
             </div>
-        </div> -->
+        </div>
 </body>
 
 </html>

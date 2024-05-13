@@ -11,6 +11,7 @@ if (isset($_SESSION['fullname'])) {
     $fullname = $_SESSION['fullname'];
 } else {
     header('Location: http://localhost/TicketShop/pages/login.php');
+    exit();
 }
 
 if(isset($_POST['btnPayment']) ){
@@ -23,10 +24,10 @@ if(isset($_POST['btnPayment']) ){
     $product_id = $_POST['product_id'];
     $status = 0;
 }
-echo $product_id;
+
 
 $connection = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
-$sql = "SELECT thumbnail, title, even_date, locations FROM products WHERE id = '$product_id';";
+$sql = "SELECT * FROM products WHERE id = '$product_id';";
 $result = mysqli_query($connection, $sql);
 mysqli_close($connection);
 if (mysqli_num_rows($result) > 0) {

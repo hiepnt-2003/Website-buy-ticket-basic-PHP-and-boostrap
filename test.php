@@ -1,9 +1,9 @@
 <?php
 session_start();
-if (isset($_SESSION['HTTP_REFERER']) && ($_SESSION['HTTP_REFERER']) != '') {
-    $product_id = $_SESSION['HTTP_REFERER'];
+if (isset($_SESSION['sql'])) {
+    $product_id = $_SESSION['sql'];
 }
 
-  echo $product_id;
+  echo $product_id.'<br>';
 
 ?>

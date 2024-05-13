@@ -42,32 +42,34 @@ require_once('./pages/process/process_index.php');
     <input type="hidden" id="search_content" name="search_content">
   </form>
 
-  <!-- navbar-expand-lg: Class này kiểm soát thời điểm mà thanh điều hướng
-      sẽ chuyển từ chế độ ngang (horizontal) sang chế độ xổ xuống (collapsed). 
-      Trong trường hợp này, thanh điều hướng sẽ chuyển sang chế độ xổ xuống 
-      khi kích thước màn hình nhỏ hơn điểm ngắt cho kích thước lớn (large). -->
+  <!-- navbar-expand-lg: Chế độ ngang (horizontal) -> chế độ xổ xuống (collapsed) -->
   <header class="navbar navbar-expand-lg">
+
     <div class="container d-flex justify-content-center align-items-center">
-      <a class="navbar-brand" href="http://localhost/TicketShop/">
+      <a class="navbar-brand " href="http://localhost/TicketShop/">
         <img src="./img/logo.png" alt="Logo" height="50px">
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+
       <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- navbar-nav -> menu ngang, với các mục menu được căn giữa và có padding xung quanh. -->
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link active text-nav" aria-current="page" href="http://localhost/TicketShop/">Trang chủ</a>
+            <a class="nav-link" href="http://localhost/TicketShop/">Trang chủ</a>
           </li>
           <li class="nav-item">
-            <div class="nav-link text-nav" type="submit" id="search_content" onclick="SentValueToSearchPage('Solo Show')">Solo Show</div>
+            <div class="nav-link" type="submit" id="search_content" onclick="SentValueToSearchPage('Solo Show')">Solo Show</div>
           </li>
           <li class="nav-item">
-            <div class="nav-link text-nav" type="submit" id="search_content" onclick="SentValueToSearchPage('Band Show')">Band Show</div>
+            <div class="nav-link" type="submit" id="search_content" onclick="SentValueToSearchPage('Band Show')">Band Show</div>
           </li>
           <li class="nav-item">
-            <div class="nav-link text-nav" type="submit" id="search_content" onclick="SentValueToSearchPage('Music Festival')">Music Festival</div>
+            <div class="nav-link" type="submit" id="search_content" onclick="SentValueToSearchPage('Music Festival')">Music Festival</div>
           </li>
+          <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) : ?>
+            <li class="nav-item">
+              <a class="nav-link" href="./pages/admin.php">Admin</a>
+            </li>
+          <?php endif; ?>
         </ul>
 
         <form class="d-flex search_form" action="./pages/search.php" method="post">
@@ -75,7 +77,7 @@ require_once('./pages/process/process_index.php');
           <button class="btn btn-outline-success" type="submit" name="SearchProducts">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
-        </form> 
+        </form>
 
         <?php if (isset($fullname)) : ?>
           <div class="dropdown px-2">
@@ -106,6 +108,7 @@ require_once('./pages/process/process_index.php');
   <div class="container main">
 
     <div class="photo_dynamic pt-4">
+      <!-- data-bs-ride="carousel" -> tự động bắt đầu chạy khi trang tải -->
       <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
         <!-- Slides -->
         <div class="carousel-inner" type="submit" style="width: 100%;">
@@ -121,14 +124,16 @@ require_once('./pages/process/process_index.php');
         </div>
 
         <!-- Controls -->
+
+        <!-- data-bs-target="#myCarousel": Thuộc tính này chỉ định đối tượng mà nút hoặc liên kết này sẽ kiểm soát. -->
+        <!-- data-bs-slide="prev": Thuộc tính này chỉ định hành động mà nút hoặc liên kết này sẽ thực hiện khi được nhấp -->
         <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
+        </button><!-- return -->
+
         <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+        </button><!-- next -->
       </div>
     </div>
 
@@ -139,6 +144,8 @@ require_once('./pages/process/process_index.php');
     <div class="container list_events">
       <div class="row">
         <?php for ($i = 0; $i < 9; $i++) : ?>
+          <!-- lg-4 -> màn hình rộng 3(4/12) ô -->
+          <!-- md-6 -> màn hình nhỏ 2(6/12) ô -->
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100" type="submit" onclick="SentValueToProductPage('<?php echo $products[$i]['id']; ?>')">
               <img src="<?php echo $products[$i]['thumbnail']; ?>" class="card-img-top">
@@ -152,6 +159,107 @@ require_once('./pages/process/process_index.php');
         <?php endfor; ?>
       </div>
     </div>
+
+    <div class="feedback">
+      <h3 class="text-center text-danger pt-5">Phản hồi của khách hàng</h3>
+      <div class="d-flex container py-5">
+        <div class="card h-100 rounded" style="background-color: aliceblue;">
+          <div class="card-body">
+            <h5 class="card-title text-center">Hỗ trợ khách hàng</h5>
+            <div class="d-flex justify-content-center align-items-center text-warning py-2">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="card-text">Họ tên: Nguyễn Văn A</p>
+            <p class="card-text">Phản hồi: Trong khi thanh toán tôi có gặp một số lỗi nhưng
+              nhờ sự hỗ trợ của nhân viên tôi đã hoàn thành thanh toán một cách nhanh chóng.
+            </p>
+          </div>
+        </div>
+
+        <div class="card h-100 rounded mx-4" style="background-color: aliceblue;">
+          <div class="card-body">
+            <h5 class="card-title text-center">Chất lượng của trang</h5>
+            <div class="d-flex justify-content-center align-items-center text-warning py-2">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="card-text">Họ tên: Nguyễn Văn B</p>
+            <p class="card-text">Phản hồi: Tôi có thể sử dụng trang web một cách dễ dàng và nhanh chóng
+              ngay cả khi tôi không biết sử dụng máy tính. Tôi rất hài lòng với trang web này.
+            </p>
+          </div>
+        </div>
+
+        <div class="card h-100 rounded" style="background-color: aliceblue;">
+          <div class="card-body">
+            <h5 class="card-title text-center">Khác</h5>
+            <div class="d-flex justify-content-center align-items-center text-warning py-2">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="card-text">Họ tên: Nguyễn Văn C</p>
+            <p class="card-text">Phản hồi: Tôi nhận được vé điện tử của mình ngay sau khi thanh toán 1-2p.
+              Tôi rất hài lòng với dịch vụ của trang web này.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <div class="row">
+      <h2 class="text-center text-primary pt-5">Blog chia sẻ</h2>
+      <h5 class="text-center text-primary pb-3">Những mẹo hay từ chúng tôi</h5>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+          <img src="./img/xếp hàng.jpg" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Kinh nghiệm khi xếp hàng vào event</h5>
+            <p class="card-text">Một số cách hay giúp bạn xếp hàng vào event một cách nhanh chóng và dễ dàng.
+              Tránh việc xếp hàng lâu mà không hiệu quả.
+            </p>
+            <button type="button" class="btn btn-primary">Xem thêm</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+          <img src="./img/du idol.jpg" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Những vật dụng thiết yếu khi đu idol</h5>
+            <p class="card-text">Một số cách hay giúp bạn xếp hàng vào event một cách nhanh chóng và dễ dàng.</p>
+            <button type="button" class="btn btn-primary">Xem thêm</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+          <img src="./img/sơ cứu.jpg" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Cách tự sơ cứu mình khi gặp sự cố</h5>
+            <p class="card-text">Khi tham gia sự kiện lớn. Có sự cố xảy ra là không thể .
+              Nếu bạn nắm giữ những thứ này bạn có thể tự cứu sống chính mình.
+            </p>
+            <button type="button" class="btn btn-primary">Xem thêm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
 
   <footer>
@@ -172,6 +280,7 @@ require_once('./pages/process/process_index.php');
           <p>Facebook: <a href="#">Nguyễn Tiến Hiệp</a></p>
           <p>Zalo: <a href="#">Nguyễn Tiến Hiệp</a></p>
           <p>Hotline: 0338948581</p>
+          <a href="./pages/feedback.php" class="feedback">Gửi phản hồi cho chúng tôi</a>
         </div>
         <div class="col">
           <h5>Chính sách</h5>

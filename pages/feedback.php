@@ -1,5 +1,5 @@
 <?php
-require_once('./process/process_product.php');
+require_once('./process/process_feedback.php');
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +8,7 @@ require_once('./process/process_product.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $product['title'] ?></title>
+    <title>Tìm kiếm</title>
     <link rel="icon" href="../img/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -18,11 +18,25 @@ require_once('./process/process_product.php');
 
 <body>
     <script>
+        function SentValueToProductPage(value_click) {
+            // Hàm này tìm kiếm thẻ input có id là product_id trong form 
+            // rồi gán giá trị của thẻ input đó = value_click.
+            document.getElementById('product_id').value = value_click;
+            // Gửi form có id là Form_sent_page_product lên sever
+            document.getElementById('Form_sent_page_product').submit();
+        }
+    </script>
+
+    <script>
         function SentValueToSearchPage(value_click) {
             document.getElementById('search_content').value = value_click;
             document.getElementById('Form_sent_page_search').submit();
         }
     </script>
+
+    <form id="Form_sent_page_product" action="./products.php" method="post">
+        <input type="hidden" id="product_id" name="product_id">
+    </form>
 
     <form id="Form_sent_page_search" action="./search.php" method="post">
         <input type="hidden" id="search_content" name="search_content">
@@ -65,18 +79,18 @@ require_once('./process/process_product.php');
                             <?php echo $fullname; ?>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="./account.php">Tài khoản</a></li>
-                            <li><a class="dropdown-item" href="./logout.php">Đăng xuất</a></li>
+                            <li><a class="dropdown-item" href="./pages/account.php">Tài khoản</a></li>
+                            <li><a class="dropdown-item" href="./pages/logout.php">Đăng xuất</a></li>
                         </ul>
                     </div>
 
                 <?php else : ?>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-nav " href="./register.php">Đăng ký</a>
+                            <a class="nav-link text-nav " href="./pages/register.php">Đăng ký</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-nav" href="./login.php">Đăng nhập</a>
+                            <a class="nav-link text-nav" href="./pages/login.php">Đăng nhập</a>
                         </li>
                     </ul>
                 <?php endif; ?>
@@ -85,35 +99,34 @@ require_once('./process/process_product.php');
         </div>
     </header>
 
-    <div class="container main">
-        <div class="col-sm-6 pt-4">
-            <img src="<?php echo '.' . $product['thumbnail']; ?>" height="430x" style="border-radius: 10px;">
-        </div>
-        <div class="row py-5">
-            <div class="col-sm-6">
-                <h2 class="text-center">Giới thiệu</h2>
-                <p><?php echo $product['description']; ?></p>
+    <div class="container main" style="background-color: var(--background-main-color);">
+        <div class="row container py-5">
+            <div class="col-sm-4 d-flex justify-content-center align-items-center">
+                <img class="rounded" src="../img/feedback.jpg" alt="img_feedback" style="height:200px;">
             </div>
-            <div class="col-sm-6">
-                <h5 class="text-left"><?php echo $product['title']; ?></h5>
-                <h5 class="text-left">
-                    <i class="fa-solid fa-calendar-days" style="color: var(--note-color);"></i>
-                    <?php echo $product['even_date']; ?>
-                </h5>
-                <h5 class="text-left">
-                    <i class="fa-solid fa-location-dot" style="color: var(--note-color);"></i>
-                    <?php echo $product['locations']; ?>
-                </h5>
-                <p class="text-center">......................</p>
-                <h5 class="text-left">Giá chỉ từ: <?php echo $product['price']; ?> VND</h5>
+            <div class="col-sm-8">
+                <form action="feedback.php" method="post">
+                    <div class="d-flex  mb-3 ms-5">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="exampleFormControlInput1" class="form-label me-3">Họ</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" name="fullname" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="exampleFormControlInput1" class="form-label me-3">Tên</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" name="fullname" required>
+                            </div>
+                        </div>
 
-                <form action="payment.php" method="post">
-                    <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
-                    <button class="btn btn-success ms-2" type="submit" name="buy_now" style="width: 100%;">Đặt vé ngay</button>
+                    </div>
+                    <div class="mb-3 ms-5">
+                        <label for="exampleFormControlTextarea1" class="form-label">Nội dung</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-3 ms-5" name="feedback">Gửi</button>
                 </form>
             </div>
         </div>
-
     </div>
 
     <footer>

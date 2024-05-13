@@ -79,18 +79,18 @@ require_once('./process/process_search.php');
                             <?php echo $fullname; ?>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="./pages/account.php">Tài khoản</a></li>
-                            <li><a class="dropdown-item" href="./pages/logout.php">Đăng xuất</a></li>
+                            <li><a class="dropdown-item" href="./account.php">Tài khoản</a></li>
+                            <li><a class="dropdown-item" href="./logout.php">Đăng xuất</a></li>
                         </ul>
                     </div>
 
                 <?php else : ?>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-nav " href="./pages/register.php">Đăng ký</a>
+                            <a class="nav-link text-nav " href="./register.php">Đăng ký</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-nav" href="./pages/login.php">Đăng nhập</a>
+                            <a class="nav-link text-nav" href="./login.php">Đăng nhập</a>
                         </li>
                     </ul>
                 <?php endif; ?>
@@ -99,10 +99,39 @@ require_once('./process/process_search.php');
         </div>
     </header>
 
-    <div class="container main">
-        <div class="row container py-5" style="min-height: 288px;">
-            <div class="col-sm-3 sticky-top">
-                tìm kiếm theo thuộc tính
+    <div class="container main py-5" style="background-color: aliceblue;">
+        <div class="row container" style="min-height: 288px;">
+            <div class="col-sm-3 ps-3 rounded">
+                <h3 class="text-center">Tìm kiếm</h3>
+                <form action="search.php" method="post">
+                    <h4 class="pt-3">Giá tiền</h4>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="price" value="500k" id="check500k">
+                        <label class="form-check-label" for="check500k">Nhỏ hơn 500k</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="price" value="1tr" id="check1tr">
+                        <label class="form-check-label" for="check1tr">500k - 1tr</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="price" value=">1tr" id="check>1tr">
+                        <label class="form-check-label" for="check>1tr">Lớn hơn 1tr</label>
+                    </div>
+
+                    <h4 class="pt-3">Ngày diễn ra</h4>
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Từ ngày</label>
+                        <input type="date" class="form-control" id="date" name="from_date">
+                    </div>
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Đến ngày</label>
+                        <input type="date" class="form-control" id="date" name="to_date">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" name="btn_search_submit">Tìm kiếm</button>
+                </form>
             </div>
             <div class="col-sm-9">
                 <div class="row">

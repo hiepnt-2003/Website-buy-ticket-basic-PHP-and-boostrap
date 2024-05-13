@@ -4,6 +4,9 @@ require_once('./process/config.php');
 
 if (isset($_SESSION['fullname']) && $_SESSION['fullname'] != '') {
     $fullname = $_SESSION['fullname'];
+}else {
+    header('Location: http://localhost/TicketShop/pages/login.php');
+    exit();
 }
 
 $connection = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);

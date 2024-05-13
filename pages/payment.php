@@ -65,18 +65,18 @@ require_once('./process/process_payment.php');
                             <?php echo $fullname; ?>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="./pages/account.php">Tài khoản</a></li>
-                            <li><a class="dropdown-item" href="./pages/logout.php">Đăng xuất</a></li>
+                            <li><a class="dropdown-item" href="./account.php">Tài khoản</a></li>
+                            <li><a class="dropdown-item" href="./logout.php">Đăng xuất</a></li>
                         </ul>
                     </div>
 
                 <?php else : ?>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-nav " href="./pages/register.php">Đăng ký</a>
+                            <a class="nav-link text-nav " href="./register.php">Đăng ký</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-nav" href="./pages/login.php">Đăng nhập</a>
+                            <a class="nav-link text-nav" href="./login.php">Đăng nhập</a>
                         </li>
                     </ul>
                 <?php endif; ?>
@@ -84,7 +84,7 @@ require_once('./process/process_payment.php');
             </div>
         </div>
     </header>
-    <div class="container main" style="background-color: aliceblue; border-radius: 10px;">
+    <div class="container rounded main" style="background-color: aliceblue;">
         <div class="row">
             <div class="col-md-6">
                 <div class="container py-5">
@@ -119,7 +119,7 @@ require_once('./process/process_payment.php');
                             </select>
                         </div>
                         <input type="hidden" id="totalMoney" name="totalMoney" value="<?php echo $product['price']; ?>">
-                        <input type="hidden" id="product_id" name="product_id" value="<?php echo $product_id; ?>">
+                        <input type="hidden" id="product_id" name="product_id" value="<?php echo $product['id']; ?>">
                         <div class="d-flex justify-content-center">
                             <button class="btn btn-success" type="submit" name="btnPayment" style="width: 30%;">
                                 Tiếp tục

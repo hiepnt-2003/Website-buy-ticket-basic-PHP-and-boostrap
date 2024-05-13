@@ -23,6 +23,7 @@ if (isset($_POST['btnLogin']) ) {
         // So sánh mật khẩu đã hash từ cơ sở dữ liệu với mật khẩu người dùng nhập vào
         if (md5($password) == $hashed_password) {
             $_SESSION['fullname'] = $user['fullname'];
+            $_SESSION['role_id'] = $user['role_id'];
             header('Location: http://localhost/TicketShop');
             exit();
         }

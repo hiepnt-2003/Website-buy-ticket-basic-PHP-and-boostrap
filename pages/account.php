@@ -56,29 +56,15 @@ require_once('./process/process_account.php');
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>
-
-                <?php if (isset($fullname)) : ?>
-                    <div class="dropdown px-2">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php echo $fullname; ?>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="./pages/account.php">Tài khoản</a></li>
-                            <li><a class="dropdown-item" href="./pages/logout.php">Đăng xuất</a></li>
-                        </ul>
-                    </div>
-
-                <?php else : ?>
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link text-nav " href="./pages/register.php">Đăng ký</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-nav" href="./pages/login.php">Đăng nhập</a>
-                        </li>
+                <div class="dropdown px-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <?php echo $fullname; ?>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="./account.php">Tài khoản</a></li>
+                        <li><a class="dropdown-item" href="./logout.php">Đăng xuất</a></li>
                     </ul>
-                <?php endif; ?>
-
+                </div>
             </div>
         </div>
     </header>
