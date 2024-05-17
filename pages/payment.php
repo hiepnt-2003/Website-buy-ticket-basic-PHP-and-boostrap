@@ -50,6 +50,11 @@ require_once('./process/process_payment.php');
                     <li class="nav-item">
                         <div class="nav-link text-nav" type="submit" onclick="SentValueToSearchPage('Music Festival')">Music Festival</div>
                     </li>
+                    <?php if (isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./admin.php">Admin</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
 
                 <form class="d-flex search_form" action="./search.php" method="post">
@@ -125,7 +130,6 @@ require_once('./process/process_payment.php');
                                 Tiếp tục
                             </button>
                         </div>
-
                     </form>
                 </div>
             </div>

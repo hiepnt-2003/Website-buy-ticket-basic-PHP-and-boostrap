@@ -81,12 +81,11 @@ $products = array();
 if (mysqli_num_rows($result_products) > 0) {
     while ($row = mysqli_fetch_assoc($result_products)) {
         // Lưu thông tin sản phẩm
-        if ( $row['category_id'] == 1) {
+        if ($row['category_id'] == 1) {
             $category = 'Solo Show';
         } else if ($row['category_id'] == 2) {
             $category = 'Band Show';
-        }
-        else{
+        } else {
             $category = 'Music Festival';
         }
 
@@ -100,46 +99,69 @@ if (mysqli_num_rows($result_products) > 0) {
             'category' => $category,
             'title' => $row['title'],
             'price' => $row['price'],
+            'thumbnail' => $row['thumbnail'],
+            'description' => $row['description'],
+            'locations' => $row['locations'],
             'even_date' => $row['even_date'],
             'deleted' => $deleted
         );
     }
 }
+mysqli_close($connection);
 
-if (isset($_POST['chane_liveshow'])){
-    if($_POST['category'] == 'Solo Show'){
-        $category_id = 1;
-    } else if($_POST['category'] == 'Band Show'){
-        $category_id = 2;
-    } else{
-        $category_id = 3;
-    }
 
-    if($_POST['deleted'] == 'Đã xóa'){
-        $deleted = 1;
-    } else{
-        $deleted = 0;
-    }
-
-    $title = $_POST['title'];
-    $price = $_POST['price'];
-    $even_date = $_POST['even_date'];
-
-    $sql = "INSERT INTO products (category_id, title, price, even_date, deleted) VALUES ('$category_id', '$title', '$price', '$even_date', '$deleted')";
-    $result = mysqli_query($connection, $sql);
-    if ($result) {
-        header('Location: http://localhost/TicketShop/pages/admin.php');
-        exit();
-    }
-}
 $show_change_liveshow = false;
-if (isset($_POST['change_liveshow'])){
+if (isset($_POST['change_liveshow'])) {
     $product_change_id = $_POST['value_change_liveshow'];
-    foreach ($products as $product){
-        if($product['id'] == $product_change_id){
+    foreach ($products as $product) {
+        if ($product['id'] == $product_change_id) {
             $product_change = $product;
             $show_change_liveshow = true;
             break;
         }
     }
+}
+$update_status = '';
+if (isset($_POST['chane_detail_liveshow'])) {
+    $ID_change = $_POST['ID_change'];
+    $category_change = $_POST['category_change'];
+    $title_change = $_POST['title_change'];
+    $price_change = $_POST['price_change'];
+    $thumbnail_change = $_POST['thumbnail_change'];
+    $description_change = $_POST['description_change'];
+    $even_date_change = $_POST['even_date_change'];
+    $locations_change = $_POST['locations_change'];
+    $deleted_change = $_POST['deleted_change'];
+
+    $sql_change = "UPDATE products SET category_id = '$category_change', title = '$title_change', 
+                            price = '$price_change', thumbnail = '$thumbnail_change', description = '$description_change', 
+                            even_date = '$even_date_change', locations = '$locations_change', deleted = '$deleted_change' WHERE id = '$ID_change'";
+    $connection = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
+    $result_change = mysqli_query($connection, $sql_change);
+    mysqli_close($connection);
+    $update_status = 'Cập nhật thành công';
+}
+
+$show_add_liveshow = false;
+if (isset($_POST['add_liveshow'])) {
+    $show_add_liveshow = true;
+}
+
+$add_status = '';
+if (isset($_POST['btn_add'])) {
+    $category_add = $_POST['category_add'];
+    $title_add = $_POST['title_add'];
+    $price_add = $_POST['price_add'];
+    $thumbnail_add = $_POST['thumbnail_add'];
+    $description_add = $_POST['description_add'];
+    $even_date_add = $_POST['even_date_add'];
+    $locations_add = $_POST['locations_add'];
+    $deleted_add = $_POST['deleted_add'];
+
+    $sql_add = "INSERT INTO products (category_id, title, price, thumbnail, description, even_date, locations, deleted) 
+            VALUES ('$category_add', '$title_add', '$price_add', '$thumbnail_add', '$description_add', '$even_date_add', '$locations_add', '$deleted_add')";  
+    $connection = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
+    $result_add = mysqli_query($connection, $sql_add);
+    mysqli_close($connection);
+    $add_status = 'Thêm thành công';
 }

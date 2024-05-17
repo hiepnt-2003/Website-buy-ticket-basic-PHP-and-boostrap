@@ -82,22 +82,16 @@ require_once('./process/process_admin.php');
                     <button type="submit" class="btn btn-secondary mt-1 h-75 w-100" style="height: 50px" name="general">Tổng quan
                     </button>
 
-                    <button type="submit" class="btn btn-secondary mt-1 h-75 w-100" style="height: 50px" name="liveshow">Liveshow
-                    </button>
-
                     <button type="submit" class="btn btn-secondary mt-1 h-75 w-100" style="height: 50px" name="add_liveshow">Thêm LiveShow
                     </button>
 
-                    <button type="submit" class="btn btn-secondary mt-1 h-75 w-100" style="height: 50px" name="change_liveshow">Sửa Liveshow
-                    </button>
-
-                    <button type="submit" class="btn btn-secondary mt-1 h-75 w-100" style="height: 50px" name="Order">Đơn hàng
+                    <button type="submit" class="btn btn-secondary mt-1 h-75 w-100" style="height: 50px" name="order">Đơn hàng
                     </button>
 
                     <button type="submit" class="btn btn-secondary mt-1 h-75 w-100" style="height: 50px" name="account">Người dùng
                     </button>
 
-                    <button type="submit" class="btn btn-secondary mt-1 h-75 w-100" style="height: 50px" name="Feedback">Phản hồi
+                    <button type="submit" class="btn btn-secondary mt-1 h-75 w-100" style="height: 50px" name="feedback">Phản hồi
                     </button>
 
                 </form>
@@ -109,31 +103,96 @@ require_once('./process/process_admin.php');
                         <div class="container w-50">
                             <form method="POST" action="admin.php">
                                 <div class="mb-3">
-                                    <label for="category_change" class="form-label">Danh mục</label>
-                                    <input type="text" class="form-control" id="category_change" 
-                                            name="category_change" placeholder="" required>
+                                    <label class="form-label">ID</label>
+                                    <input type="text" class="form-control" id="ID_change" value="<?php echo $product_change['id']; ?>" name="ID_change" readonly>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="title" class="form-label">Tiêu đề</label>
-                                    <input type="text" class="form-control" id="rtitle_change" name="registerAccount" required>
+                                    <label class="form-label">Danh mục(1-Solo Show 2-Band Show 3-Festival)</label>
+                                    <input type="text" class="form-control" id="category_change" name="category_change" value="<?php echo $product_change['category']; ?>" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="price_change" class="form-label">Giá thay đổi</label>
-                                    <input type="text" class="form-control" id="price_change" name="price_change" required>
+                                    <label class="form-label">Tiêu đề</label>
+                                    <input type="text" class="form-control" id="title_change" name="title_change" value="<?php echo $product_change['title']; ?>" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="returnPassword" class="form-label">Nhập lại mật khẩu</label>
-                                    <input type="password" class="form-control" id="returnPassword" name="returnPassword" required>
+                                    <label class="form-label">Giá thay đổi</label>
+                                    <input type="text" class="form-control" id="price_change" name="price_change" value="<?php echo $product_change['price']; ?>" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Đường dẫn hình ảnh</label>
+                                    <input type="text" class="form-control" id="thumbnail_change" name="thumbnail_change" value="<?php echo $product_change['thumbnail']; ?>" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Miêu tả</label>
+                                    <input type="text" class="form-control" id="description_change" name="description_change" value="<?php echo $product_change['description']; ?>" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Địa điểm</label>
+                                    <input type="text" class="form-control" id="locations_change" name="locations_change" value="<?php echo $product_change['locations']; ?>" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Ngày diễn ra</label>
+                                    <input type="date" class="form-control" id="even_date_change" name="even_date_change" value="<?php echo $product_change['even_date']; ?>" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Trạng thái(1-Đã hết vé 0-Chưa hết vé)</label>
+                                    <input type="text" class="form-control" id="deleted_change" name="deleted_change" value="<?php echo $product_change['deleted']; ?>" required>
                                 </div>
                                 <div class="d-flex justify-content-center align-items-center">
-                                    <button type="submit" class="btn btn-primary my-2" name="chane_liveshow">Xác nhận thay đổi</button>
+                                    <button type="submit" class="btn btn-primary my-2" name="chane_detail_liveshow">Xác nhận thay đổi</button>
                                 </div>
                             </form>
                         </div>
                     </div>
-
+                <?php elseif ($show_add_liveshow == true) : ?>
+                    <h2 class="text-center text-danger py-3">Thêm LiveShow</h2>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="container w-50">
+                            <form method="POST" action="admin.php">
+                                <div class="mb-3">
+                                    <label class="form-label">Danh mục(1-Solo Show 2-Band Show 3-Festival)</label>
+                                    <input type="text" class="form-control" id="category_add" name="category_add" placeholder="" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Tiêu đề</label>
+                                    <input type="text" class="form-control" id="title_add" name="title_add" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Giá</label>
+                                    <input type="text" class="form-control" id="price_add" name="price_add" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Đường dẫn hình ảnh</label>
+                                    <input type="text" class="form-control" id="thumbnail_add" name="thumbnail_add" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Miêu tả</label>
+                                    <input type="text" class="form-control" id="description_add" name="description_add" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Địa điểm</label>
+                                    <input type="text" class="form-control" id="locations_add" name="locations_add" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Ngày diễn ra</label>
+                                    <input type="date" class="form-control" id="even_date_add" name="even_date_add" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Trạng thái(1-Đã hết vé 0-Chưa hết vé)</label>
+                                    <input type="text" class="form-control" id="deleted_add" name="deleted_add" required>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <button type="submit" class="btn btn-primary my-2" name="btn_add">Xác nhận thêm</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 <?php else : ?>
-                    <h2 class="text-center text-danger py-3">Quản lý LiveShow</h2>
+                    <h2 class="text-center text-danger py-3">Thông tin LiveShow</h2>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <label class="text-center" style="font-size: 20px; color: green"><?php echo $update_status; ?></label>
+                        <label class="text-center" style="font-size: 20px; color: green"><?php echo $add_status; ?></label>
+                    </div>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -141,8 +200,8 @@ require_once('./process/process_admin.php');
                                 <th scope="col">Danh Mục</th>
                                 <th scope="col">Tiêu đề</th>
                                 <th scope="col">Giá</th>
-                                <th scope="col">Thời gian</th>
                                 <th scope="col">Trạng thái</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -161,7 +220,7 @@ require_once('./process/process_admin.php');
                                         <?php echo $row['price'] ?>
                                     </td>
                                     <td>
-                                        <?php echo $row['even_date'] ?>
+                                        <?php echo $row['deleted'] ?>
                                     </td>
                                     <td>
                                         <form action="./admin.php" method="post">
@@ -173,9 +232,6 @@ require_once('./process/process_admin.php');
                             <?php endforeach; ?>
                         </tbody>
                     </table>
-                    <div class="d-flex justify-content-center align-items-center pb-5">
-                        <button type="submit" class="btn btn-primary w-25" name="chane_liveshow">Xác nhận thay đổi</button>
-                    </div>
                 <?php endif; ?>
             </div>
         </div>

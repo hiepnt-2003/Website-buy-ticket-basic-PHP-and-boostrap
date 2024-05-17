@@ -8,7 +8,9 @@ if (isset($_SESSION['fullname']) && $_SESSION['fullname'] != '') {
 }
 
 $connection = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
-$sql = 'SELECT id, thumbnail, title, even_date, price FROM products ORDER BY products.even_date DESC;';
+$sql = 'SELECT id, thumbnail, title, even_date, price FROM products 
+        WHERE products.deleted = 0
+        ORDER BY products.even_date DESC;';
 $result = mysqli_query($connection, $sql);
 mysqli_close($connection);
 
