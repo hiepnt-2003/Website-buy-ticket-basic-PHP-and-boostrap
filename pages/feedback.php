@@ -107,28 +107,39 @@ require_once('./process/process_feedback.php');
     <div class="container main" style="background-color: var(--background-main-color);">
         <div class="row container py-5">
             <div class="col-sm-4 d-flex justify-content-center align-items-center">
-                <img class="rounded" src="../img/feedback.jpg" alt="img_feedback" style="height:200px;">
+                <img class="rounded ps-5" src="../img/feedback.jpg" alt="img_feedback" style="height:200px;">
             </div>
             <div class="col-sm-8">
                 <form action="feedback.php" method="post">
-                    <div class="d-flex  mb-3 ms-5">
-                        <div class="row">
-                            <div class="col-sm-6">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="w-75">
+                            <div class="mb-3 ms-5">
                                 <label for="exampleFormControlInput1" class="form-label me-3">Họ</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" name="fullname" required>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" name="first_name" required>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="mb-3 ms-5">
                                 <label for="exampleFormControlInput1" class="form-label me-3">Tên</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" name="fullname" required>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" name="last_name" required>
                             </div>
+                            <div class="mb-3 ms-5">
+                                <label for="exampleFormControlInput1" class="form-label me-3">Email</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" name="email" required>
+                            </div>
+                            <div class="mb-3 ms-5">
+                                <label for="exampleFormControlInput1" class="form-label me-3">Số điện thoại</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" name="phone" required>
+                            </div>
+                            <div class="mb-3 ms-5">
+                                <label for="exampleFormControlInput1" class="form-label me-3">Chủ đề</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" name="subject" required>
+                            </div>
+                            <div class="mb-3 ms-5">
+                                <label for="exampleFormControlTextarea1" class="form-label">Nội dung</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary mb-3 ms-5 w-25" name="btn-feedback">Gửi</button>
                         </div>
-
                     </div>
-                    <div class="mb-3 ms-5">
-                        <label for="exampleFormControlTextarea1" class="form-label">Nội dung</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary mb-3 ms-5" name="feedback">Gửi</button>
                 </form>
             </div>
         </div>
