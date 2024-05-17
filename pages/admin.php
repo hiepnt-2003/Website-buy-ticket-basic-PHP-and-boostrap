@@ -187,6 +187,86 @@ require_once('./process/process_admin.php');
                             </form>
                         </div>
                     </div>
+                <?php elseif ($show_order == true) : ?>
+                    <h2 class="text-center text-danger py-3">Thông tin Đơn hàng</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Tên show</th>
+                                <th>Người nhận</th>
+                                <th>Địa chỉ nhận</th>
+                                <th>Giá</th>
+                                <th>Trạng thái</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($ticked as $item) : ?>
+                                <tr>
+                                    <td><?php echo $item['Tên show']; ?></td>
+                                    <td><?php echo $item['Tên người nhận']; ?></td>
+                                    <td><?php echo $item['Địa chỉ người nhận']; ?></td>
+                                    <td><?php echo $item['Giá']; ?></td>
+                                    <td>
+                                        <?php if ($item['Trạng thái'] == '0') {
+                                            echo 'Chưa hoàn thành';
+                                        } else {
+                                            echo 'Đã hoàn thành';
+                                        }  ?>
+                                    </td>
+                                    <td>
+                                        <form action="./admin.php" method="post">
+                                            <input type="hidden" name="id_order" value="<?php echo $item['ID order']; ?>">
+                                            <button type="submit" class="btn btn-success" name="complete_order">Đã xong</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php elseif ($show_user == true) : ?>
+                    <h2 class="text-center text-danger py-3">Thông tin Đơn hàng</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Quyền</th>
+                                <th>Tài khoản</th>
+                                <th>Tên</th>
+                                <th>Trạng thái</th>
+                                <th>Cấp quyền admin</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($user as $item) : ?>
+                                <tr>
+                                    <td><?php echo $item['id']; ?></td>
+                                    <td>
+                                        <?php if ($item['role_id'] == '1') {
+                                            echo 'ADMIN';
+                                        } else {
+                                            echo 'NGƯỜI DÙNG';
+                                        }  ?>
+                                    </td>
+                                    <td><?php echo $item['account']; ?></td>
+                                    <td><?php echo $item['fullname']; ?></td>
+                                    <td>
+                                        <?php if ($item['deleted'] == '0') {
+                                            echo 'Hoạt động';
+                                        } else {
+                                            echo 'Đã xóa';
+                                        }  ?>
+                                    </td>
+                                    <td>
+                                        <form action="./admin.php" method="post">
+                                            <input type="hidden" name="change_role_value" value="<?php echo $item['id']; ?>">
+                                            <button type="submit" class="btn btn-success" name="change_role">Cấp quyền</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 <?php else : ?>
                     <h2 class="text-center text-danger py-3">Thông tin LiveShow</h2>
                     <div class="d-flex justify-content-center align-items-center">

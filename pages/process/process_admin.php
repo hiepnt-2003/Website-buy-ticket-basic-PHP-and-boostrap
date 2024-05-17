@@ -14,47 +14,6 @@ if (isset($_SESSION['fullname']) && $_SESSION['fullname'] != '') {
 
 $connection = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
 
-$query = "SELECT * FROM `orders`";
-$result_order = mysqli_query($connection, $query);
-
-$order = array();
-if (mysqli_num_rows($result_order) > 0) {
-    while ($row = mysqli_fetch_assoc($result_order)) {
-        // Lưu thông tin đơn hàng
-        if ($row['status'] == 1) {
-            $status = 'Đã xử lý';
-        } else if ($row['status'] == 0) {
-            $status = 'Chưa xử lý';
-        }
-        $order[] = array(
-            'id' => $row['id'],
-            'email' => $row['email'],
-            'phone_number' => $row['phone_number'],
-            'note' => $row['note'],
-            'status' => $status,
-            'total_money' => $row['total_money']
-        );
-    }
-}
-
-
-$sql_user = 'SELECT * FROM user;';
-$result_user = mysqli_query($connection, $sql_user);
-
-$user = array();
-if (mysqli_num_rows($result_user) > 0) {
-    while ($row = mysqli_fetch_assoc($result_user)) {
-        // Lưu thông tin người dùng
-        $user[] = array(
-            'id' => $row['id'],
-            'role_id' => $row['role_id'],
-            'fullname' => $row['fullname'],
-            'deleted' => $row['deleted']
-        );
-    }
-}
-
-
 $sql_feedback = 'SELECT * FROM feedback;';
 $result_feedback = mysqli_query($connection, $sql_feedback);
 
@@ -159,9 +118,86 @@ if (isset($_POST['btn_add'])) {
     $deleted_add = $_POST['deleted_add'];
 
     $sql_add = "INSERT INTO products (category_id, title, price, thumbnail, description, even_date, locations, deleted) 
-            VALUES ('$category_add', '$title_add', '$price_add', '$thumbnail_add', '$description_add', '$even_date_add', '$locations_add', '$deleted_add')";  
+            VALUES ('$category_add', '$title_add', '$price_add', '$thumbnail_add', '$description_add', '$even_date_add', '$locations_add', '$deleted_add')";
     $connection = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
     $result_add = mysqli_query($connection, $sql_add);
     mysqli_close($connection);
     $add_status = 'Thêm thành công';
+}
+
+$show_order = false;
+if (isset($_POST['order'])) {
+    $show_order = true;
+}
+
+$connection = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
+$sql_order = "SELECT 
+            orders.id as 'ID order', 
+            products.title as 'Tên show', 
+            orders.fullname as 'Tên người nhận', 
+            orders.address as 'Địa chỉ người nhận',
+            products.price as 'Giá',
+            orders.status as 'Trạng thái'
+        FROM orders
+        JOIN detail_order ON orders.id = detail_order.order_id
+        JOIN products ON detail_order.product_id = products.id
+        GROUP BY orders.id, products.title;";
+$result_ticked = mysqli_query($connection, $sql_order);
+mysqli_close($connection);
+
+$ticked = array();
+if (mysqli_num_rows($result_ticked) > 0) {
+    while ($row = mysqli_fetch_assoc($result_ticked)) {
+        // Lưu thông tin sản phẩm vào mảng
+        $ticked[] = array(
+            'ID order' => $row['ID order'],
+            'Tên show' => $row['Tên show'],
+            'Tên người nhận' => $row['Tên người nhận'],
+            'Địa chỉ người nhận' => $row['Địa chỉ người nhận'],
+            'Giá' => $row['Giá'],
+            'Trạng thái' => $row['Trạng thái']
+        );
+    }
+}
+
+if (isset($_POST['complete_order'])) {
+    $show_order = true;
+    $id_order = $_POST['id_order'];
+    $sql_change = "UPDATE orders SET status = '1' WHERE id = '$id_order'";
+    $connection = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
+    $result_change = mysqli_query($connection, $sql_change);
+    mysqli_close($connection);
+}
+
+$show_user = false;
+$user = array();
+$sql_user = 'SELECT * FROM user;';
+$connection = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
+$result_user = mysqli_query($connection, $sql_user);
+mysqli_close($connection);
+if (mysqli_num_rows($result_user) > 0) {
+    while ($row = mysqli_fetch_assoc($result_user)) {
+        // Lưu thông tin người dùng
+        $user[] = array(
+            'id' => $row['id'],
+            'role_id' => $row['role_id'],
+            'account' => $row['account'],
+            'fullname' => $row['fullname'],
+            'deleted' => $row['deleted']
+        );
+    }
+}
+
+if (isset($_POST['account'])) {
+    $show_user = true;
+}
+
+if (isset($_POST['change_role'])) {
+    $show_user = true;
+    $id_role_change = $_POST['change_role_value'];
+    $sql_change_role = "UPDATE user SET role_id = '1' WHERE id = '$id_role_change'";
+
+    $connection = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
+    $result_change = mysqli_query($connection, $sql_change_role);
+    mysqli_close($connection);
 }
