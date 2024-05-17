@@ -181,6 +181,7 @@ require_once('./process/process_search.php');
                     <p>Facebook: <a href="#">Nguyễn Tiến Hiệp</a></p>
                     <p>Zalo: <a href="#">Nguyễn Tiến Hiệp</a></p>
                     <p>Hotline: 0338948581</p>
+                    <a href="./feedback.php" class="feedback">Gửi phản hồi cho chúng tôi</a>
                 </div>
                 <div class="col">
                     <h5>Chính sách</h5>

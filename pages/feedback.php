@@ -84,18 +84,18 @@ require_once('./process/process_feedback.php');
                             <?php echo $fullname; ?>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="./pages/account.php">Tài khoản</a></li>
-                            <li><a class="dropdown-item" href="./pages/logout.php">Đăng xuất</a></li>
+                            <li><a class="dropdown-item" href="./account.php">Tài khoản</a></li>
+                            <li><a class="dropdown-item" href="./logout.php">Đăng xuất</a></li>
                         </ul>
                     </div>
 
                 <?php else : ?>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-nav " href="./pages/register.php">Đăng ký</a>
+                            <a class="nav-link text-nav " href="./register.php">Đăng ký</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-nav" href="./pages/login.php">Đăng nhập</a>
+                            <a class="nav-link text-nav" href="./login.php">Đăng nhập</a>
                         </li>
                     </ul>
                 <?php endif; ?>
