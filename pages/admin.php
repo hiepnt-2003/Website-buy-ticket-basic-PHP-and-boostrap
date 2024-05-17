@@ -225,7 +225,7 @@ require_once('./process/process_admin.php');
                         </tbody>
                     </table>
                 <?php elseif ($show_user == true) : ?>
-                    <h2 class="text-center text-danger py-3">Thông tin Đơn hàng</h2>
+                    <h2 class="text-center text-danger py-3">Thông tin Người dùng</h2>
                     <table class="table">
                         <thead>
                             <tr>
@@ -262,6 +262,47 @@ require_once('./process/process_admin.php');
                                             <input type="hidden" name="change_role_value" value="<?php echo $item['id']; ?>">
                                             <button type="submit" class="btn btn-success" name="change_role">Cấp quyền</button>
                                         </form>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php elseif ($show_feedback == true) : ?>
+                    <h2 class="text-center text-danger py-3">Phản hồi</h2>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Họ</th>
+                                <th scope="col">Tên</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">SĐT</th>
+                                <th scope="col">Chủ đề</th>
+                                <th scope="col">Nội dung</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($feedback as $row) : ?>
+                                    <td>
+                                        <?php echo $row['id'] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['first_name'] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['last_name'] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['email'] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['phone_number'] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['subject_name'] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['note'] ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

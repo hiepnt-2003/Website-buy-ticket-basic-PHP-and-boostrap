@@ -201,3 +201,8 @@ if (isset($_POST['change_role'])) {
     $result_change = mysqli_query($connection, $sql_change_role);
     mysqli_close($connection);
 }
+
+$show_feedback = false;
+if (isset($_POST['feedback'])) {
+    $show_feedback = true;
+}
