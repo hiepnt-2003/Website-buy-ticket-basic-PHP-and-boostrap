@@ -208,16 +208,19 @@ require_once('./process/process_admin.php');
                                     <td><?php echo $item['Địa chỉ người nhận']; ?></td>
                                     <td><?php echo $item['Giá']; ?></td>
                                     <td>
-                                        <?php if ($item['Trạng thái'] == '0') {
+                                        <?php
+                                        $is_complete = '';
+                                        if ($item['Trạng thái'] == '0') {
                                             echo 'Chưa hoàn thành';
                                         } else {
                                             echo 'Đã hoàn thành';
+                                            $is_complete = 'disabled';
                                         }  ?>
                                     </td>
                                     <td>
                                         <form action="./admin.php" method="post">
                                             <input type="hidden" name="id_order" value="<?php echo $item['ID order']; ?>">
-                                            <button type="submit" class="btn btn-success" name="complete_order">Đã xong</button>
+                                            <button type="submit" class="btn btn-success" name="complete_order"<?php echo $is_complete; ?> >Đã xong</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -242,8 +245,11 @@ require_once('./process/process_admin.php');
                                 <tr>
                                     <td><?php echo $item['id']; ?></td>
                                     <td>
-                                        <?php if ($item['role_id'] == '1') {
+                                        <?php
+                                        $is_disabled = '';
+                                        if ($item['role_id'] == '1') {
                                             echo 'ADMIN';
+                                            $is_disabled = 'disabled';
                                         } else {
                                             echo 'NGƯỜI DÙNG';
                                         }  ?>
@@ -260,7 +266,7 @@ require_once('./process/process_admin.php');
                                     <td>
                                         <form action="./admin.php" method="post">
                                             <input type="hidden" name="change_role_value" value="<?php echo $item['id']; ?>">
-                                            <button type="submit" class="btn btn-success" name="change_role">Cấp quyền</button>
+                                            <button type="submit" class="btn btn-success" name="change_role" <?php echo $is_disabled; ?>>Cấp quyền</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -283,27 +289,27 @@ require_once('./process/process_admin.php');
                         </thead>
                         <tbody>
                             <?php foreach ($feedback as $row) : ?>
-                                    <td>
-                                        <?php echo $row['id'] ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $row['first_name'] ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $row['last_name'] ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $row['email'] ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $row['phone_number'] ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $row['subject_name'] ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $row['note'] ?>
-                                    </td>
+                                <td>
+                                    <?php echo $row['id'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['first_name'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['last_name'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['email'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['phone_number'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['subject_name'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['note'] ?>
+                                </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

@@ -219,7 +219,7 @@ require_once('./pages/process/process_index.php');
 
     </div>
 
-    <div class="row">
+    <div class="row blog">
       <h2 class="text-center text-primary pt-5">Blog chia sẻ</h2>
       <h5 class="text-center text-primary pb-3">Những mẹo hay từ chúng tôi</h5>
       <div class="col-lg-4 col-md-6 mb-4">
@@ -259,7 +259,6 @@ require_once('./pages/process/process_index.php');
         </div>
       </div>
     </div>
-  </div>
   </div>
 
   <footer>
