@@ -1,4 +1,5 @@
 This project use boostrap,xampp(php,mysql)
+
 Phương pháp cài đặt hệ thống:
 -   Cài đặt Xampp sau đó mở Apache và MySQL
 -	Tải repository và lưu vào thư mục htdocs trong xampp
