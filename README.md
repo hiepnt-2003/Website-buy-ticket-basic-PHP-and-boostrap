@@ -1,4 +1,4 @@
-Dự án xử dụng boostrap 5, php, mysql(localhost)
+Dự án sử dụng boostrap 5, php, mysql(localhost)
 
 Phương pháp cài đặt hệ thống:
 - Cài đặt Xampp sau đó mở Apache và MySQL
