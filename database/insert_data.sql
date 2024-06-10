@@ -3,11 +3,11 @@ INSERT INTO role(name) VALUES
     ('user');
     
 INSERT INTO user(role_id,fullname,account,password,deleted) VALUES
-    (1,	'Nguyễn Tiến Hiệp',	'hiepnt',	'admin',	0),
-    (1,	'Nguyễn Tiến Đức',	'ducnt',	'admin',	1),
-    (2,	'Trần Đức Anh',		'anhtd',	'user',		0),
-    (2,	'Lê Hồng Nhung',	'nhunglh',	'user',		0),
-    (2,	'Lê Quang Đạt',		'datlq',	'user',		0);
+    (1,	'Nguyễn Tiến Hiệp',	'hiepnt',	     'ac31b792b13550b6d8cc39c434227e67',	0),
+    (1,	'Nguyễn Tiến Đức',	'ducnt',	     'ac31b792b13550b6d8cc39c434227e67',	1),
+    (2,	'Trần Đức Anh',	'anhtd',	     'ac31b792b13550b6d8cc39c434227e67',	0),
+    (2,	'Lê Hồng Nhung',	'nhunglh',	'ac31b792b13550b6d8cc39c434227e67',	0),
+    (2,	'Lê Quang Đạt',	'datlq',	     'ac31b792b13550b6d8cc39c434227e67',	0);
 
 INSERT INTO category (name) VALUES
     ('Solo Show'),
@@ -126,9 +126,9 @@ INSERT INTO feedback (first_name,	last_name,	email,	phone_number,	subject_name,	
 ('Nguyễn', 	'Việt Thành',	'thanhnv@gmail.com',	'0523456789',	'Đánh giá chất lượng',	'Chất lượng tốt');
 
 INSERT INTO orders (user_id,fullname,email,phone_number,address,order_date,status,total_money) VALUES
-    (3,	'Trần Đức Anh',		'tranducanh@gmail.com',		'0338948581','772 Kim Giang , Thanh Trì, Hà Nội',	'2024-01-15',0,	550000),
-    (4,	'Lê Hồng Nhung',	'lehongnhung@gmail.com',	'0987662013','123 Trần Phú, Hà Đông, Hà Nội',		'2024-02-20',0,	1100000),
-    (5,	'Lê Quang Đạt',		'lequangdat@gmail.com',		'0987552413','161 Khương Trung, Thanh Xuân, Hà Nội','2023-04-23',1,	550000);
+    (3,	'Trần Đức Anh',	'tranducanh@gmail.com',	'0338948581',  '772 Kim Giang , Thanh Trì, Hà Nội',	'2024-01-15'   ,0,	550000),
+    (4,	'Lê Hồng Nhung',	'lehongnhung@gmail.com',	'0987662013',  '123 Trần Phú, Hà Đông, Hà Nội',		'2024-02-20'   ,0,	1100000),
+    (5,	'Lê Quang Đạt',	'lequangdat@gmail.com',	'0987552413',  '161 Khương Trung, Thanh Xuân, Hà Nội', '2023-04-23'   ,1,	550000);
 
 INSERT INTO detail_order (order_id,	product_id,	price,	number, total_money) VALUES
     (1,	1,	550000,	1,	550000),
