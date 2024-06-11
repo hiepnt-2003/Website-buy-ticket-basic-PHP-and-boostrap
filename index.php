@@ -46,7 +46,7 @@ require_once('./pages/process/process_index.php');
   <header class="navbar navbar-expand-lg">
 
     <div class="container d-flex justify-content-center align-items-center">
-      <a class="navbar-brand " href="http://localhost/TicketShop/">
+      <a class="navbar-brand " href="./index.php">
         <img src="./img/logo.png" alt="Logo" height="50px">
       </a>
 
@@ -54,7 +54,7 @@ require_once('./pages/process/process_index.php');
         <!-- navbar-nav -> menu ngang, với các mục menu được căn giữa và có padding xung quanh. -->
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link" href="http://localhost/TicketShop/">Trang chủ</a>
+            <a class="nav-link" href="./index.php">Trang chủ</a>
           </li>
           <li class="nav-item">
             <div class="nav-link" type="submit" id="search_content" onclick="SentValueToSearchPage('Solo Show')">Solo Show</div>

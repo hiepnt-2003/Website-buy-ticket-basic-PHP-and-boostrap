@@ -29,7 +29,7 @@ require_once('./process/process_admin.php');
 
     <header class="navbar navbar-expand-lg">
         <div class="container d-flex justify-content-center align-items-center">
-            <a class="navbar-brand" href="http://localhost/TicketShop/">
+            <a class="navbar-brand" href="../index.php">
                 <img src="../img/logo.png" alt="Logo" height="50px">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,7 @@ require_once('./process/process_admin.php');
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active text-nav" aria-current="page" href="http://localhost/TicketShop/">Trang chủ</a>
+                        <a class="nav-link active text-nav" aria-current="page" href="../index.php">Trang chủ</a>
                     </li>
                     <li class="nav-item">
                         <div class="nav-link text-nav" type="submit" onclick="SentValueToSearchPage('Solo Show')">Solo Show</div>
