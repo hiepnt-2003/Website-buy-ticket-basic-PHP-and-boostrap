@@ -3,6 +3,7 @@ Dự án sử dụng boostrap 5, php, mysql(localhost)
 Phương pháp cài đặt hệ thống:
 - Cài đặt Xampp sau đó mở Apache và MySQL
 -	Tải repository và lưu vào thư mục htdocs trong xampp
+-	Đổi tên file thành TicketShop
 -	Vào phpMyAdmin (localhost / 127.0.0.1 | phpMyAdmin 5.2.1):
   
      o	Tạo database có tên là ticketshop trên phpMyAdmin:  CREATE DATABASE ticketshop;
